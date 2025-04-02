@@ -1,98 +1,125 @@
-# QR School - Sistema de Asistencia con Códigos QR
+# QRSchool: Sistema de Control de Asistencia Mediante Códigos QR
 
-Un sistema de gestión de asistencia para entornos educativos que utiliza códigos QR para registrar la asistencia de estudiantes de manera rápida y eficiente.
+## Descripción General
 
-## Características
+**QRSchool** es una solución integral para la gestión de asistencia educativa mediante tecnología de códigos QR. Esta plataforma optimiza el registro de asistencia, eliminando procesos manuales y reduciendo el margen de error humano.
 
-- **Gestión de usuarios**: Administradores y profesores
-- **Gestión de estudiantes**: Información personal, asignación a grupos
-- **Generación de códigos QR**: Códigos únicos para cada estudiante
-- **Registro de asistencia**: Escaneo de códigos QR mediante dispositivos móviles
-- **Reportes**: Generación de informes por estudiante, grupo y fecha
-- **Importación masiva**: Carga de estudiantes mediante archivos Excel o CSV
+El sistema permite a los docentes registrar la presencia de estudiantes mediante el escaneo de códigos QR únicos, generando automáticamente registros digitales precisos y actualizados en tiempo real.
 
-## Requisitos
+## Segmentos de Usuarios
 
+### Cuerpo Docente
+- Profesionales educativos que requieren eficiencia en el registro de asistencia
+- Docentes que necesitan mantener registros precisos y de fácil acceso
+- Educadores interesados en la implementación de soluciones tecnológicas en el aula
+
+### Personal Administrativo
+- Directivos que requieren reportes de asistencia automáticos y centralizados
+- Coordinadores académicos que supervisan métricas de asistencia institucional
+- Administrativos que necesitan datos concretos sobre la presencia estudiantil
+
+### Estudiantes
+- Alumnos que se benefician de un proceso de registro de asistencia simplificado
+- Estudiantes que requieren acceso a su historial de asistencia personal
+- Participantes del sistema educativo que utilizan su dispositivo móvil como herramienta académica
+
+## Características Principales
+
+### Sistema de Usuarios Jerarquizado
+- **Administradores**: Control total del sistema y configuración institucional
+- **Profesores**: Gestión de asistencia y acceso a reportes específicos
+- **Estudiantes**: Acceso a información personal y registro de asistencias
+
+### Portal para Estudiantes
+- Autenticación mediante número de documento (sin necesidad de contraseña)
+- Visualización de información personal y académica
+- Descarga de código QR personal en formato estándar (1080×1080 píxeles)
+- Consulta de historial completo de asistencias
+
+### Escáner QR de Alto Rendimiento
+- Reconocimiento inmediato de códigos QR
+- Compatibilidad con múltiples dispositivos y condiciones de iluminación
+
+### Sistema de Reportes Avanzados
+- Generación de informes detallados por múltiples parámetros
+- Visualización de datos estadísticos con opciones de exportación
+
+### Módulo de Importación Masiva
+- Sistema para carga masiva de datos estudiantiles
+- Compatibilidad con formatos estándar de hojas de cálculo
+
+## Requisitos de Implementación
+
+### Requisitos Técnicos
 - PHP 7.4 o superior
 - MySQL/MariaDB
-- Extensiones PHP: 
-  - mbstring
-  - xml
-  - gd
-  - pdo_mysql
-  - curl
-  - zip (recomendado)
-- Composer (para gestión de dependencias)
+- Extensiones PHP: mbstring, xml, zip
+- Servidor Apache/Nginx
+- Infraestructura con estabilidad operativa
 
-## Instalación
+### Proceso de Instalación
+1. **Obtener el repositorio**:
+   ```bash
+   git clone https://github.com/su-organizacion/qrschool.git
+   ```
 
-### 1. Configuración de la base de datos
+2. **Instalar dependencias**:
+   ```bash
+   composer install
+   ```
 
-1. Crea una base de datos MySQL e importa el archivo `gestion.sql` para establecer la estructura inicial
-2. Configura los datos de conexión en el archivo `.env`:
+3. **Configurar base de datos**:
+   - Crear una base de datos en MySQL
+   - Importar el archivo `gestion.sql`
+   - Configurar el archivo `.env` con los parámetros de conexión:
+     ```
+     DB_SERVER=localhost
+     DB_USERNAME=[usuario]
+     DB_PASSWORD=[contraseña]
+     DB_NAME=[nombre_base_datos]
+     ```
 
-```
-DB_SERVER=localhost
-DB_USERNAME=tu_usuario
-DB_PASSWORD=tu_contraseña
-DB_NAME=nombre_base_datos
-```
+4. **Configurar el servidor web** para que apunte al directorio del proyecto
 
-### 2. Instalación de dependencias
+5. **Acceder a la aplicación** para comenzar la configuración institucional
 
-Ejecuta el siguiente comando en la raíz del proyecto:
+## Verificación del Sistema
 
-```bash
-composer install
-```
-
-### 3. Configuración del servidor
-
-Para instalar en un servidor local (XAMPP, WAMP, etc.):
-1. Coloca los archivos en el directorio htdocs o www
-2. Accede a través de http://localhost/nombre-directorio
-
-Para instalar en un servidor remoto:
-1. Sube todos los archivos mediante FTP
-2. Asegúrate de que los permisos de archivos y carpetas sean correctos (755 para directorios, 644 para archivos)
-3. Si tu servidor no tiene acceso SSH para ejecutar Composer:
-   - Ejecuta `composer install` localmente
-   - Sube la carpeta `vendor` generada al servidor
-
-### 4. Verificación
-
-Accede a `check_phpspreadsheet.php` para verificar que las dependencias están correctamente instaladas.
-
-## Uso del sistema
-
-### Acceso al sistema
-- Usuario administrador por defecto:
-  - Correo: usuario@gmail.com
+### Credenciales predeterminadas:
+- **Administrador**: 
+  - Correo electrónico: scharss@gmail.com
   - Contraseña: xxxxxxx
 
-### Funcionalidades principales
-- **Administrador**: Gestión de grupos, estudiantes, profesores y reportes
-- **Profesor**: Registro de asistencia mediante escaneo de códigos QR y reportes
+### Acceso para estudiantes:
+- Utilizar el número de documento del estudiante registrado en el sistema
 
-## Solución de problemas
+## Colaboración y Desarrollo
 
-### Error de conexión a la base de datos
-Si recibes un error como `Host 'XXX.XXX.XXX.XXX' is not allowed to connect to this MySQL server`:
-1. Verifica que los datos de conexión en `.env` sean correctos
-2. Para desarrollo local, asegúrate de usar 'localhost' como DB_SERVER
-3. Para servidores remotos, confirma que tu IP esté autorizada para conectarse
+La contribución al desarrollo del sistema se gestiona mediante un proceso estructurado de solicitudes de incorporación (pull requests), sujetas a los siguientes criterios:
 
-### Error al importar estudiantes
-Si la importación de estudiantes desde Excel no funciona:
-1. Verifica que PHPSpreadsheet esté instalado correctamente ejecutando `check_phpspreadsheet.php`
-2. Asegúrate de que el formato del archivo de importación sea correcto
-3. Considera usar archivos CSV que suelen tener mejor compatibilidad
+### Directrices de contribución:
+1. **Calidad del código**: Debe cumplir con los estándares de codificación establecidos
+2. **Documentación**: Toda contribución debe estar adecuadamente documentada
+3. **Pruebas**: Se valorará la implementación de pruebas unitarias y de integración
 
-## Licencia
+## Desarrollo Futuro
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+El plan de desarrollo incluye las siguientes implementaciones programadas:
 
-## Contacto
+- **Aplicación móvil** para facilitar el acceso desde dispositivos portátiles
+- **Autenticación biométrica** para incrementar la seguridad del sistema
+- **Integración con plataformas de calendario** para sincronización de eventos
+- **Implementación de inteligencia artificial** para análisis predictivo de asistencia
 
-Para soporte o consultas, contactar a scharss@gmail.com
+## Consideraciones Finales
+
+El sistema QRSchool representa una solución tecnológica orientada a optimizar procesos educativos fundamentales. La implementación de este sistema permite a las instituciones educativas modernizar sus procedimientos administrativos y concentrar recursos en su misión educativa principal.
+
+## Información Legal
+
+Este proyecto se distribuye bajo la licencia MIT, que permite su uso, modificación y distribución bajo ciertas condiciones específicas detalladas en el archivo de licencia.
+
+---
+
+*Desarrollado por scharss@gmail.com Todos los derechos reservados.*
 
